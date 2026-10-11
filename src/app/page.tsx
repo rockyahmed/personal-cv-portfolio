@@ -4,11 +4,13 @@ import { About, Education, Experience, Projects, Skills } from "@/components/Sec
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import GlobalEffects from "@/components/GlobalEffects";
+import SettingsWidget from "@/components/SettingsWidget";
 
 export default function Home() {
   return (
     <>
       <GlobalEffects />
+      <SettingsWidget />
       <Navbar />
       <main>
         <Hero />
