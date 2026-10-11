@@ -1,0 +1,24 @@
+// ==========================================================================
+//  globals.scss — Main SCSS entry point
+//
+//  Import order:
+//    1. Design tokens (CSS custom properties — themes, accents)
+//    2. Base reset & typography
+//    3. Background visual effects
+//    4. Layout helpers, cards, buttons
+//    5. Navbar & mobile menu
+//    6. Hero section
+//    7. Page sections (stats, about, experience, skills, projects, etc.)
+//    8. Settings widget & appearance panel
+//    9. Responsive breakpoints & print
+// ==========================================================================
+
+@use "styles/tokens";
+@use "styles/base";
+@use "styles/bg-fx";
+@use "styles/layout";
+@use "styles/navbar";
+@use "styles/hero";
+@use "styles/sections";
+@use "styles/settings-widget";
+@use "styles/responsive";

@@ -1,0 +1,164 @@
+// ==========================================================================
+//  Design Tokens — CSS Custom Properties (variables, themes, accents)
+// ==========================================================================
+
+// Shared structural tokens (not theme-specific)
+:root {
+  --radius-sm: 10px;
+  --radius: 18px;
+  --radius-lg: 28px;
+  --container: 1180px;
+  --nav-h: 76px;
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-grotesk), var(--font-sans);
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+// ── Light theme (DEFAULT) ─────────────────────────────────────────────────
+:root,
+[data-theme="light"] {
+  --theme: light;
+  --bg: hsl(220 28% 97%);
+  --bg-2: hsl(220 24% 92%);
+  --surface: hsl(0 0% 100% / 0.82);
+  --surface-solid: hsl(0 0% 100%);
+  --surface-hover: hsl(0 0% 100% / 0.98);
+  --border: hsl(220 20% 18% / 0.08);
+  --border-strong: hsl(220 20% 18% / 0.16);
+
+  --text: hsl(228 35% 12%);
+  --text-muted: hsl(228 16% 38%);
+  --text-dim: hsl(228 12% 54%);
+
+  --teal: hsl(168 85% 36%);
+  --violet: hsl(258 80% 58%);
+  --pink: hsl(325 80% 52%);
+  --amber: hsl(36 95% 42%);
+
+  --grad: linear-gradient(120deg, var(--teal) 0%, var(--violet) 55%, var(--pink) 100%);
+  --grad-soft: linear-gradient(120deg, hsl(168 85% 36% / 0.12), hsl(258 80% 58% / 0.12));
+
+  --shadow: 0 16px 45px -12px hsl(220 30% 20% / 0.08), 0 4px 14px -2px hsl(220 30% 20% / 0.04);
+  --glow: 0 0 0 1px hsl(258 80% 60% / 0.18), 0 16px 40px -15px hsl(258 80% 60% / 0.22);
+
+  --nav-bg: hsl(0 0% 100% / 0.85);
+  --nav-pill-bg: hsl(0 0% 100% / 0.88);
+  --nav-active-pill: hsl(220 20% 20% / 0.06);
+  --mobile-menu-bg: hsl(220 25% 98% / 0.96);
+  --terminal-bg: hsl(0 0% 100% / 0.94);
+  --terminal-head-bg: hsl(220 20% 95% / 0.9);
+  --badge-bg: hsl(0 0% 100% / 0.92);
+  --badge-text: #ffffff;
+  --btn-primary-text: #ffffff;
+  --logo-mark-text: #ffffff;
+  --input-bg: hsl(0 0% 100% / 0.75);
+  --input-bg-focus: hsl(0 0% 100% / 0.98);
+  --bg-grid-color: hsl(220 20% 20% / 0.045);
+  --blob-opacity: 0.28;
+  --chip-bg: hsl(220 20% 20% / 0.04);
+  --btn-ghost-bg: hsl(220 20% 20% / 0.05);
+  --icon-btn-bg: hsl(0 0% 100% / 0.85);
+  --scrollbar-track: hsl(220 24% 94%);
+  --scrollbar-border: hsl(220 28% 97%);
+  --spotlight-alpha-1: 0.45;
+  --spotlight-alpha-2: 0.35;
+  --cursor-glow-color: hsl(258 90% 68% / 0.05);
+  --orbit-border: hsl(220 20% 20% / 0.1);
+  --orbit-border-2: hsl(220 20% 20% / 0.06);
+  --project-overlay-bg: hsl(220 28% 97% / 0.88);
+  --project-cat-bg: hsl(0 0% 100% / 0.88);
+  --tl-dot-bg: hsl(220 28% 97%);
+}
+
+// ── Dark theme ─────────────────────────────────────────────────────────────
+[data-theme="dark"] {
+  --theme: dark;
+  --bg: hsl(232 30% 5%);
+  --bg-2: hsl(232 26% 8%);
+  --surface: hsl(232 24% 11% / 0.6);
+  --surface-solid: hsl(232 24% 11%);
+  --surface-hover: hsl(232 24% 15% / 0.7);
+  --border: hsl(232 20% 60% / 0.12);
+  --border-strong: hsl(232 20% 70% / 0.22);
+
+  --text: hsl(230 30% 96%);
+  --text-muted: hsl(230 14% 68%);
+  --text-dim: hsl(230 10% 50%);
+
+  --teal: hsl(168 82% 55%);
+  --violet: hsl(258 90% 68%);
+  --pink: hsl(320 85% 66%);
+  --amber: hsl(38 95% 62%);
+
+  --grad: linear-gradient(120deg, var(--teal) 0%, var(--violet) 55%, var(--pink) 100%);
+  --grad-soft: linear-gradient(120deg, hsl(168 82% 55% / 0.15), hsl(258 90% 68% / 0.15));
+
+  --shadow: 0 20px 60px -20px hsl(232 60% 2% / 0.8);
+  --glow: 0 0 0 1px hsl(258 90% 68% / 0.25), 0 20px 60px -15px hsl(258 90% 60% / 0.45);
+
+  --nav-bg: hsl(232 30% 5% / 0.75);
+  --nav-pill-bg: hsl(232 24% 11% / 0.5);
+  --nav-active-pill: hsl(230 30% 90% / 0.08);
+  --mobile-menu-bg: hsl(232 30% 5% / 0.94);
+  --terminal-bg: hsl(232 28% 9% / 0.82);
+  --terminal-head-bg: hsl(232 28% 12% / 0.6);
+  --badge-bg: hsl(232 28% 10% / 0.85);
+  --badge-text: hsl(232 30% 6%);
+  --btn-primary-text: hsl(232 30% 6%);
+  --logo-mark-text: hsl(232 30% 6%);
+  --input-bg: hsl(232 30% 5% / 0.55);
+  --input-bg-focus: hsl(232 30% 6% / 0.8);
+  --bg-grid-color: hsl(230 30% 90% / 0.035);
+  --blob-opacity: 0.45;
+  --chip-bg: hsl(230 30% 90% / 0.04);
+  --btn-ghost-bg: hsl(230 30% 90% / 0.04);
+  --icon-btn-bg: hsl(230 30% 90% / 0.04);
+  --scrollbar-track: var(--bg);
+  --scrollbar-border: var(--bg);
+  --spotlight-alpha-1: 0.7;
+  --spotlight-alpha-2: 0.5;
+  --cursor-glow-color: hsl(258 90% 68% / 0.08);
+  --orbit-border: hsl(230 30% 90% / 0.1);
+  --orbit-border-2: hsl(230 30% 90% / 0.06);
+  --project-overlay-bg: hsl(232 30% 5% / 0.85);
+  --project-cat-bg: hsl(232 30% 5% / 0.7);
+  --tl-dot-bg: var(--bg);
+}
+
+// ── Accent presets ─────────────────────────────────────────────────────────
+[data-accent="ocean"] {
+  --teal: hsl(192 95% 42%);
+  --violet: hsl(218 90% 58%);
+  --pink: hsl(265 85% 60%);
+}
+
+[data-theme="dark"][data-accent="ocean"] {
+  --teal: hsl(192 95% 50%);
+  --violet: hsl(218 95% 65%);
+  --pink: hsl(265 90% 68%);
+}
+
+[data-accent="sunset"] {
+  --teal: hsl(38 95% 44%);
+  --violet: hsl(14 90% 54%);
+  --pink: hsl(340 85% 55%);
+}
+
+[data-theme="dark"][data-accent="sunset"] {
+  --teal: hsl(40 98% 58%);
+  --violet: hsl(16 95% 62%);
+  --pink: hsl(342 90% 65%);
+}
+
+[data-accent="cyber"] {
+  --teal: hsl(315 85% 48%);
+  --violet: hsl(270 85% 58%);
+  --pink: hsl(175 85% 36%);
+}
+
+[data-theme="dark"][data-accent="cyber"] {
+  --teal: hsl(315 90% 64%);
+  --violet: hsl(270 90% 68%);
+  --pink: hsl(175 90% 55%);
+}

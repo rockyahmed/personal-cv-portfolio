@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import "./globals.css";
+import "./globals.scss";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
 const grotesk = Space_Grotesk({ variable: "--font-grotesk", subsets: ["latin"], display: "swap" });
