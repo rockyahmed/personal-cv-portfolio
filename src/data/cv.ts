@@ -17,15 +17,15 @@ export const profile = {
   ],
   summary:
     "Front-End Developer with 7+ years of experience building responsive web applications using Angular, React, Next.js, JavaScript, HTML5, CSS3, WordPress, and API integrations. Experienced in delivering client projects and leading front-end development workflows.",
-  location: "Turag, Dhaka, Bangladesh",
+  location: "Uttara S10 (KamarPara), Turag, Dhaka, Bangladesh",
   phones: ["+880 1772956364", "+880 1676790690"],
   /** Used by the contact form to open a pre-filled WhatsApp chat. Digits only. */
-  whatsapp: "8801772956364",
+  whatsapp: "8801941091733",
   /** Add your email here to show it in the contact section (optional). */
-  email: "",
+  email: "rockybd1995@gmail.com",
   // TODO: replace with your real profile URLs
-  linkedin: "https://www.linkedin.com/",
-  github: "https://github.com/",
+  linkedin: "https://www.linkedin.com/in/rocky-ahmed-3a5418106",
+  github: "https://github.com/rockyahmed",
   /** Drop your PDF into /public with this file name to enable the download button. */
   cvFile: "/Md-Al-Amin-CV.pdf",
   available: true,
