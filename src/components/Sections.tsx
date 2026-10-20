@@ -285,7 +285,7 @@ export function Projects() {
           {projects.map((p, i) => (
             <div key={p.title} className="reveal" style={delay(i * 120)}>
               <TiltCard className="card spotlight project">
-                <div className="project-media">
+                <div className="project-media r">
                   <Image
                     src={p.image}
                     alt={`${p.title} preview`}

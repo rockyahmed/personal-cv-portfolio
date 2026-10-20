@@ -1,0 +1,97 @@
+// ==========================================================================
+//  Background FX — Blobs, grid overlay, cursor glow, scroll progress
+// ==========================================================================
+
+.bg-fx {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--bg-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid-color) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: var(--blob-opacity);
+  animation: float 22s var(--ease) infinite alternate;
+  transition: opacity 0.5s var(--ease);
+}
+
+.blob-1 {
+  width: 520px;
+  height: 520px;
+  top: -160px;
+  left: -120px;
+  background: hsl(168 82% 45% / 0.55);
+}
+
+.blob-2 {
+  width: 600px;
+  height: 600px;
+  top: 10%;
+  right: -200px;
+  background: hsl(258 90% 58% / 0.55);
+  animation-delay: -6s;
+}
+
+.blob-3 {
+  width: 420px;
+  height: 420px;
+  bottom: -160px;
+  left: 30%;
+  background: hsl(320 85% 56% / 0.35);
+  animation-delay: -12s;
+}
+
+@keyframes float {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(60px, 40px) scale(1.1); }
+  100% { transform: translate(-40px, 80px) scale(0.95); }
+}
+
+// Noise texture overlay
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+// Cursor-following glow (driven by CSS vars from JS)
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    500px circle at var(--mx, 50%) var(--my, -20%),
+    var(--cursor-glow-color),
+    transparent 60%
+  );
+  transition: opacity 0.3s;
+}
+
+// Scroll progress bar
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  z-index: 100;
+  background: var(--grad);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--progress, 0));
+}

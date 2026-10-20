@@ -1,0 +1,163 @@
+// ==========================================================================
+//  Responsive & Accessibility — media queries and print styles
+// ==========================================================================
+
+// ── Tablet / medium screens ────────────────────────────────────────────────
+@media (max-width: 1080px) {
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 70px;
+  }
+
+  .hero-visual {
+    justify-self: center;
+    max-width: 440px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 0;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .b-intro,
+  .b-monogram {
+    grid-column: span 3;
+  }
+
+  .contact-wrap {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+}
+
+// ── Mobile ─────────────────────────────────────────────────────────────────
+@media (max-width: 760px) {
+  .section {
+    padding: 88px 0;
+  }
+
+  .scroll-hint {
+    display: none;
+  }
+
+  .bento > * {
+    grid-column: 1 / -1 !important;
+  }
+
+  .projects-grid,
+  .edu-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .company-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timeline {
+    padding-left: 32px;
+
+    &::before {
+      left: 9px;
+    }
+  }
+
+  .tl-dot {
+    left: -32px;
+    width: 20px;
+    height: 20px;
+
+    &::after {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  .tl-card,
+  .company-card {
+    padding: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-wrap {
+    padding: 28px 22px;
+  }
+
+  .float-badge {
+    font-size: 0.72rem;
+    padding: 8px 10px;
+
+    small { display: none; }
+    b { width: 24px; height: 24px; }
+  }
+
+  .code-body {
+    font-size: 0.72rem;
+    padding: 16px;
+  }
+}
+
+// ── Small mobile ───────────────────────────────────────────────────────────
+@media (max-width: 460px) {
+  .stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .stat {
+    padding: 20px 18px;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+// ── Reduced motion ─────────────────────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// ── Print ──────────────────────────────────────────────────────────────────
+@media print {
+  .bg-fx,
+  .cursor-glow,
+  .scroll-progress,
+  .nav,
+  .scroll-hint,
+  .settings-widget-dock,
+  .settings-panel,
+  .settings-backdrop,
+  .settings-toast {
+    display: none !important;
+  }
+}

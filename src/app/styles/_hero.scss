@@ -1,0 +1,333 @@
+// ==========================================================================
+//  Hero — Full-height hero section, visual card, floating badges
+// ==========================================================================
+
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--nav-h) + 60px) 0 80px;
+  position: relative;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 60px;
+}
+
+// ── Status availability pill ───────────────────────────────────────────────
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--grad-soft);
+  color: var(--teal);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+
+.pulse {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--teal);
+    animation: ping 1.8s var(--ease) infinite;
+  }
+}
+
+@keyframes ping {
+  0%   { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+// ── Hero text content ──────────────────────────────────────────────────────
+.hero-greet {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.98;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin-bottom: 22px;
+}
+
+.hero-role {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-weight: 500;
+  color: var(--text-muted);
+  min-height: 1.5em;
+  margin-bottom: 22px;
+
+  .typed {
+    color: var(--text);
+  }
+}
+
+.caret {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  margin-left: 4px;
+  vertical-align: -0.12em;
+  background: var(--teal);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.hero-summary {
+  max-width: 560px;
+  color: var(--text-muted);
+  font-size: 1.08rem;
+  margin-bottom: 36px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.hero-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--border-strong);
+    margin-right: 6px;
+  }
+
+  .label {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    margin-right: 4px;
+  }
+}
+
+// ── Hero visual (orbit + code card) ───────────────────────────────────────
+.hero-visual {
+  position: relative;
+  aspect-ratio: 1 / 1.05;
+  max-width: 480px;
+  width: 100%;
+  justify-self: end;
+}
+
+.orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed var(--orbit-border);
+  animation: spin 40s linear infinite;
+}
+
+.orbit-2 {
+  inset: 12%;
+  animation-duration: 28s;
+  animation-direction: reverse;
+  border-style: solid;
+  border-color: var(--orbit-border-2);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.orbit-dot {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 20px var(--teal);
+}
+
+.orbit-2 .orbit-dot {
+  top: auto;
+  bottom: -5px;
+  background: var(--violet);
+  box-shadow: 0 0 20px var(--violet);
+}
+
+// ── Terminal / code card ───────────────────────────────────────────────────
+.code-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 86%;
+  transform: translate(-50%, -50%);
+  border-radius: var(--radius);
+  background: var(--terminal-bg);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow), var(--glow);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+  animation: bob 6s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50%       { transform: translate(-50%, calc(-50% - 12px)); }
+}
+
+.code-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--terminal-head-bg);
+
+  i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: hsl(0 80% 62%);
+
+    &:nth-child(2) { background: hsl(42 95% 58%); }
+    &:nth-child(3) { background: hsl(140 65% 52%); }
+  }
+
+  span {
+    margin-left: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+}
+
+.code-body {
+  padding: 20px 22px 24px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  white-space: pre;
+  overflow-x: auto;
+}
+
+// Syntax token colors
+.tk-k { color: var(--violet); }
+.tk-v { color: var(--teal); }
+.tk-s { color: var(--amber); }
+.tk-p { color: var(--pink); }
+.tk-c { color: var(--text-dim); font-style: italic; }
+
+// ── Floating badges ────────────────────────────────────────────────────────
+.float-badge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+  font-size: 0.82rem;
+  font-weight: 600;
+  animation: bob2 5s ease-in-out infinite;
+  z-index: 2;
+
+  b {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    font-size: 0.75rem;
+    color: var(--badge-text);
+  }
+
+  small {
+    display: block;
+    font-weight: 400;
+    color: var(--text-dim);
+    font-size: 0.72rem;
+  }
+}
+
+@keyframes bob2 {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.fb-1 { top: 6%; left: -6%; b { background: hsl(350 85% 62%); } }
+.fb-2 { top: 14%; right: -4%; animation-delay: -1.5s; b { background: var(--teal); } }
+.fb-3 { bottom: 10%; left: -2%; animation-delay: -3s; b { background: var(--violet); } }
+.fb-4 { bottom: 4%; right: 2%; animation-delay: -2s; b { background: var(--amber); } }
+
+// ── Scroll hint ────────────────────────────────────────────────────────────
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.mouse {
+  width: 24px;
+  height: 38px;
+  border-radius: 14px;
+  border: 2px solid var(--border-strong);
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 4px;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--teal);
+    transform: translateX(-50%);
+    animation: scrollwheel 1.8s var(--ease) infinite;
+  }
+}
+
+@keyframes scrollwheel {
+  0%   { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 12px); }
+}
