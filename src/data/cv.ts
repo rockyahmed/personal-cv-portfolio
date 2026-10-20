@@ -177,13 +177,21 @@ export const projects = [
     tags: ["Angular", "Charts", "REST API", "Responsive UI"],
   },
   {
-    title: "ScheduleBookingApi",
-    category: "Backend · Scheduling",
+    title: "Qsmart App",
+    category: "Qsmart App Frontend",
     description:
-      "Scheduling API in .NET 8 with code-first migrations, booking workflows, and resource availability management.",
+      "Developed the QSmart application using Angular and .NET 8 Web API, implementing code-first database migrations, booking workflows, and resource availability management.",
     image: "/schedule-booking.jpg",
-    tags: [".NET 8", "EF Core", "Code-first", "Booking Workflows"],
+    tags: ["Angular", ".NET 8", "EF Core", "Code-first", "Booking Workflows"],
   },
+  // {
+  //   title: "ScheduleBookingApi",
+  //   category: "Backend · Scheduling",
+  //   description:
+  //     "Scheduling API in .NET 8 with code-first migrations, booking workflows, and resource availability management.",
+  //   image: "/schedule-booking.jpg",
+  //   tags: [".NET 8", "EF Core", "Code-first", "Booking Workflows"],
+  // },
 ];
 
 export const education = [
