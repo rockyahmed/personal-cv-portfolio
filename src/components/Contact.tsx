@@ -4,25 +4,42 @@ import { useState, type FormEvent } from "react";
 import { profile } from "@/data/cv";
 import { GitHub, LinkedIn, Mail, MapPin, Phone, Send, WhatsApp } from "./Icons";
 
+type Status = "idle" | "sending" | "success" | "error";
+
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const update = (k: keyof typeof form) => (e: { target: { value: string } }) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  // No backend required: opens a pre-filled WhatsApp chat (or email if configured).
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const body = `Hi ${profile.shortName}, I'm ${form.name} (${form.email}).\n\n${
-      form.subject ? `Subject: ${form.subject}\n\n` : ""
-    }${form.message}`;
+    setStatus("sending");
+    setErrorMsg("");
 
-    const url = profile.email
-      ? `mailto:${profile.email}?subject=${encodeURIComponent(form.subject || "Portfolio enquiry")}&body=${encodeURIComponent(body)}`
-      : `https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(body)}`;
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-    window.open(url, "_blank", "noopener,noreferrer");
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setStatus("success");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Failed to send message.");
+    }
   };
+
+  const isSending = status === "sending";
 
   return (
     <section id="contact" className="section" aria-labelledby="contact-title">
@@ -79,29 +96,76 @@ export default function Contact() {
           <form className="form" onSubmit={onSubmit} id="contact-form">
             <div className="form-row">
               <div className="field">
-                <input id="contact-name" required placeholder=" " value={form.name} onChange={update("name")} autoComplete="name" />
+                <input
+                  id="contact-name"
+                  required
+                  placeholder=" "
+                  value={form.name}
+                  onChange={update("name")}
+                  autoComplete="name"
+                  disabled={isSending}
+                />
                 <label htmlFor="contact-name">Your name</label>
               </div>
               <div className="field">
-                <input id="contact-email" type="email" required placeholder=" " value={form.email} onChange={update("email")} autoComplete="email" />
+                <input
+                  id="contact-email"
+                  type="email"
+                  required
+                  placeholder=" "
+                  value={form.email}
+                  onChange={update("email")}
+                  autoComplete="email"
+                  disabled={isSending}
+                />
                 <label htmlFor="contact-email">Email address</label>
               </div>
             </div>
             <div className="field">
-              <input id="contact-subject" placeholder=" " value={form.subject} onChange={update("subject")} />
+              <input
+                id="contact-subject"
+                placeholder=" "
+                value={form.subject}
+                onChange={update("subject")}
+                disabled={isSending}
+              />
               <label htmlFor="contact-subject">Subject</label>
             </div>
             <div className="field">
-              <textarea id="contact-message" required placeholder=" " value={form.message} onChange={update("message")} />
+              <textarea
+                id="contact-message"
+                required
+                placeholder=" "
+                value={form.message}
+                onChange={update("message")}
+                disabled={isSending}
+              />
               <label htmlFor="contact-message">Tell me about your project</label>
             </div>
-            <button type="submit" id="contact-submit" className="btn btn-primary">
-              Send message <Send />
+
+            {/* Status messages */}
+            {status === "success" && (
+              <p className="form-status form-status--success" role="status">
+                ✅ Message sent! I&apos;ll get back to you soon. Check your inbox for a confirmation.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="form-status form-status--error" role="alert">
+                ❌ {errorMsg}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              id="contact-submit"
+              className="btn btn-primary"
+              disabled={isSending}
+              aria-busy={isSending}
+            >
+              {isSending ? "Sending…" : <>Send message <Send /></>}
             </button>
             <p className="form-note">
-              {profile.email
-                ? "Opens your email client with the message pre-filled."
-                : "Opens WhatsApp with your message pre-filled — no sign-up needed."}
+              Message goes directly to my inbox — I&apos;ll reply as soon as possible.
             </p>
           </form>
         </div>
